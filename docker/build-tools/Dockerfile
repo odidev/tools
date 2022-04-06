@@ -612,7 +612,7 @@ ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
 ##############
 
 FROM ubuntu:xenial AS clang_context_amd64
-FROM ubuntu:bionic AS clang_context_arm64
+FROM ubuntu:focal AS clang_context_arm64
 # hadolint ignore=DL3006
 FROM clang_context_${TARGETARCH} AS clang_context
 
@@ -679,7 +679,7 @@ RUN set -eux; \
 ###########
 
 FROM ubuntu:xenial AS bazel_context_amd64
-FROM ubuntu:bionic AS bazel_context_arm64
+FROM ubuntu:focal AS bazel_context_arm64
 # hadolint ignore=DL3006
 FROM bazel_context_${TARGETARCH} AS bazel_context
 
@@ -705,8 +705,8 @@ RUN mv ${BAZELISK_BIN} /usr/local/bin/bazel
 
 FROM ubuntu:xenial AS build_env_proxy_amd64
 ENV UBUNTU_RELEASE_CODE_NAME=xenial
-FROM ubuntu:bionic AS build_env_proxy_arm64
-ENV UBUNTU_RELEASE_CODE_NAME=bionic
+FROM ubuntu:focal AS build_env_proxy_arm64
+ENV UBUNTU_RELEASE_CODE_NAME=focal
 # hadolint ignore=DL3006
 FROM build_env_proxy_${TARGETARCH} AS build_env_proxy
 
